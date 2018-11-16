@@ -1,0 +1,9 @@
+name: deployer
+description: Deployer of application images
+home: https://github.com/ocd-scm/ocd-builder
+keywords:
+- deployer
+- openshift
+sources:
+- https://github.com/ocd-scm/ocd-builder
+version: "1.0.0"

@@ -1,0 +1,86 @@
+kind: DeploymentConfig
+apiVersion: apps.openshift.io/v1
+metadata:
+  name: {{ .Values.name | quote }}
+  labels:
+    app: {{ .Values.name | quote }}
+    template: deployer
+  annotations:
+    description: Defines how to deploy the application server
+    template.alpha.openshift.io/wait-for-ready: 'true'
+spec:
+  strategy:
+    type: Rolling
+  triggers:
+  - type: ImageChange
+    imageChangeParams:
+      automatic: true
+      containerNames:
+      -  {{ .Values.name | quote }}
+      from:
+        kind: ImageStreamTag
+        name: {{ print .Values.name ":latest" | quote }}
+  - type: ConfigChange
+  replicas: {{ .Values.replicas }}
+  selector:
+    name: {{ .Values.name | quote }}
+  selector:
+    name: {{ .Values.name | quote }}
+  template:
+    metadata:
+      name: {{ .Values.name | quote }}
+      labels:
+        name: {{ .Values.name | quote }}
+    spec:
+      revisionHistoryLimit: 10,
+      strategy:
+        type: Rolling
+      containers:
+      - env:
+          {{- range .Values.deploy_env }}
+          - name: {{ .name }}
+            value: {{ .value  | quote }}
+          {{- end }}
+        envFrom:
+        {{- range .Values.secrets }}
+          - secretRef:
+              name: {{ .name }}
+            {{- if .prefix }}
+            prefix: {{ .prefix_value }} 
+            {{- end }}
+        {{- end }}
+        name: {{ .Values.name | quote }}
+        image: " "
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          timeoutSeconds: {{ .Values.readiness_timeout }}
+          initialDelaySeconds: {{ .Values.readiness_delay }}
+          httpGet:
+            path: {{ .Values.readinessProbeGet | quote }}
+            port: 8080
+        livenessProbe:
+          timeoutSeconds: {{ .Values.liveness_timeout }}
+          initialDelaySeconds: {{ .Values.liveness_delay }}
+          httpGet:
+            path: {{ .Values.livenessProbeGet | quote }}
+            port: 8080
+        resources:
+          limits:
+            memory: {{ .Values.memory_limit | quote }}
+        {{- if .Values.volumeMounts }}
+        volumeMounts:
+        {{- range $key, $val := .Values.volumeMounts }}
+          - name: {{ $key }}
+            mountPath: {{ $val.mountPath}}
+        {{- end}}
+        {{ end }}
+      {{- if .Values.secretVolumes }}
+      volumes:
+      {{- range $key, $val := .Values.secretVolumes }}
+        - name: {{ $key }}
+          secret: 
+            defaultMode: {{ $val.defaultMode}}
+            secretName: {{ $val.secretName}}
+      {{- end}}
+      {{ end }}
