@@ -1,2 +1,1 @@
-# ocd-builder
 # ocd-deployer
