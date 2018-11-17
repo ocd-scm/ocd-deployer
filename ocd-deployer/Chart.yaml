@@ -1,8 +1,9 @@
-name: deployer
-description: Deployer of application images
+name: ocd-deployer
+description: Generic openshift deployer
 home: https://github.com/ocd-scm/ocd-builder
 keywords:
-- deployer
+- ocd-deployer
+- ocd-scm
 - openshift
 sources:
 - https://github.com/ocd-scm/ocd-builder

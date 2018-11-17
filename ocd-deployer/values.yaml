@@ -1,5 +1,5 @@
 # Name: The name assigned to all of the frontend objects defined in this template.
-name: webapp
+name: 
 # Memory Limit: Maximum amount of memory the container can use.
 memory_limit: 512Mi
 # Application Hostname: The exposed hostname that will route to the Node.js service, if left blank a value will be defaulted.
