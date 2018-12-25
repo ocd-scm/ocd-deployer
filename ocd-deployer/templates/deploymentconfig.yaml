@@ -19,7 +19,7 @@ spec:
       -  {{ .Values.name | quote }}
       from:
         kind: ImageStreamTag
-        name: {{ print .Values.name ":latest" | quote }}
+        name: {{ print .Values.imageStreamTag | quote }}
   - type: ConfigChange
   replicas: {{ .Values.replicas }}
   selector:
