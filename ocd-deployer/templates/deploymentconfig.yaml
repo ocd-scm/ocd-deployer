@@ -49,6 +49,13 @@ spec:
             prefix: {{ .prefix_value }} 
             {{- end }}
         {{- end }}
+        {{- range .Values.configmaps }}
+          - configMapRef:
+              name: {{ .name }}
+            {{- if .prefix }}
+            prefix: {{ .prefix_value }} 
+            {{- end }}
+        {{- end }}        
         name: {{ .Values.name | quote }}
         image: " "
         ports:
