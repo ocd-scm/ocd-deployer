@@ -44,14 +44,14 @@ spec:
         envFrom:
         {{- range .Values.secrets }}
           - secretRef:
-              name: {{ .name }}
+              name: {{ . | quote }}
             {{- if .prefix }}
             prefix: {{ .prefix_value }} 
             {{- end }}
         {{- end }}
         {{- range .Values.configmaps }}
           - configMapRef:
-              name: {{ .name }}
+              name: {{ . | quote }}
             {{- if .prefix }}
             prefix: {{ .prefix_value }} 
             {{- end }}
