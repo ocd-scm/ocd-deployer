@@ -1,0 +1,7 @@
+name: testingenvfrom
+secrets:
+  - name: secretone
+  - name: secrettwo
+configmaps:
+  - name: configone
+  - name: configtwo
