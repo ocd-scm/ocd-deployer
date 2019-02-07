@@ -1,7 +1,9 @@
 name: testingenvfrom
 secrets:
-  - name: secretone
-  - name: secrettwo
+  - name: 'secretone'
+  - name: 'secrettwo'
+    prefix: 'TWO_'
 configmaps:
-  - name: configone
-  - name: configtwo
+  - name: 'configone'
+    prefix: 'ONE_'
+  - name: 'configtwo'

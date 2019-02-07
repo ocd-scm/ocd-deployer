@@ -43,18 +43,24 @@ spec:
           {{- end }}
         envFrom:
         {{- range .Values.secrets }}
+          {{- if .prefix }}
+          - prefix: {{ .prefix }} 
+            secretRef:
+              name: {{ .name | quote }}
+          {{- else }}
           - secretRef:
               name: {{ .name | quote }}
-            {{- if .prefix }}
-            prefix: {{ .prefix_value }} 
-            {{- end }}
+          {{- end }}
         {{- end }}
         {{- range .Values.configmaps }}
+          {{- if .prefix }}
+          - prefix: {{ .prefix }} 
+            configMapRef:
+              name: {{ .name | quote }}
+          {{- else }}
           - configMapRef:
               name: {{ .name | quote }}
-            {{- if .prefix }}
-            prefix: {{ .prefix_value }} 
-            {{- end }}
+          {{- end }}
         {{- end }}        
         name: {{ .Values.name | quote }}
         image: " "
