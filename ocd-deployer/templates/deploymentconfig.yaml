@@ -37,7 +37,7 @@ spec:
         type: Rolling
       containers:
       - env:
-          {{- range .Values.deploy_env }}
+          {{- range .Values.env_vars }}
           - name: {{ .name }}
             value: {{ .value  | quote }}
           {{- end }}
