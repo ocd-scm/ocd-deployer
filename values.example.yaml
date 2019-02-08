@@ -7,3 +7,30 @@ configmaps:
   - name: 'configone'
     prefix: 'ONE_'
   - name: 'configtwo'
+env_vars: 
+  - key: APP_NAME
+    value: BackOffice
+  - key: BROADCAST_DRIVER
+    value: log
+  - key: CACHE_DRIVER
+    value: file
+  - key: SESSION_DRIVER
+    value: file
+  - key: SESSION_LIFETIME
+    value: "120"
+  - key: QUEUE_DRIVER
+    value: sync
+  - key: MAIL_DRIVER
+    value: mailgun
+  - key: MAIL_HOST
+    value: smtp.mailgun.org
+  - key: MAIL_PORT
+    value: "2525"
+  - key: APP_DEBUG
+    value: "true"
+  - key: APP_LOG
+    value: daily
+  - key: BACKPACK_REGISTRATION_OPEN
+    value: "false"
+  - key: APP_URL
+    value: "https://backoffice-staging.uniqkey.eu/"
