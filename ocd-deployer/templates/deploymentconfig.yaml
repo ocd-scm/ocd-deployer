@@ -38,7 +38,7 @@ spec:
       containers:
       - env:
           {{- range .Values.env_vars }}
-          - name: {{ .name }}
+          - name: {{ .key }}
             value: {{ .value  | quote }}
           {{- end }}
         envFrom:
