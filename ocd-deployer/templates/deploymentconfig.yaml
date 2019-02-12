@@ -24,8 +24,6 @@ spec:
   replicas: {{ .Values.replicas }}
   selector:
     name: {{ .Values.name | quote }}
-  selector:
-    name: {{ .Values.name | quote }}
   template:
     metadata:
       name: {{ .Values.name | quote }}
