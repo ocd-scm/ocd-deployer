@@ -81,17 +81,17 @@ spec:
             memory: {{ .Values.memory_limit | quote }}
         {{- if .Values.volumeMounts }}
         volumeMounts:
-        {{- range $key, $val := .Values.volumeMounts }}
-          - name: {{ $key }}
-            mountPath: {{ $val.mountPath}}
+        {{- range .Values.volumeMounts }}
+          - name: {{ .name }}
+            mountPath: {{ .mountPath}}
         {{- end}}
         {{- end }}
       {{- if .Values.secretVolumes }}
       volumes:
-      {{- range $key, $val := .Values.secretVolumes }}
-        - name: {{ $key }}
+      {{- range .Values.secretVolumes }}
+        - name: {{ .name }}
           secret: 
-            defaultMode: {{ $val.defaultMode}}
-            secretName: {{ $val.secretName}}
+            defaultMode: {{ .defaultMode}}
+            secretName: {{ .secretName}}
       {{- end}}
       {{ end }}

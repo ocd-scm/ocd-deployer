@@ -21,9 +21,14 @@ env_vars:
   - key: QUEUE_DRIVER
     value: sync
 secretVolumes: 
-  pem-secret-volume:
+  - name: pem-secret-volume
     secretName: apns-dev.pem
     defaultMode: 420
+  - name: other-secret-volume
+    secretName: other
+    defaultMode: 420
 volumeMounts: 
-  pem-secret-volume:
+  - name: pem-secret-volume
     mountPath: /opt/app-root/src/storage/app/certificates
+  - name: other-secret-volume=
+    mountPath: /opt/app-root/src/storage/app/other
