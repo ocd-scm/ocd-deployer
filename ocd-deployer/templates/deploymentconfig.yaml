@@ -85,7 +85,7 @@ spec:
           - name: {{ $key }}
             mountPath: {{ $val.mountPath}}
         {{- end}}
-        {{ end }}
+        {{- end }}
       {{- if .Values.secretVolumes }}
       volumes:
       {{- range $key, $val := .Values.secretVolumes }}
