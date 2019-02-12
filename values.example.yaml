@@ -20,17 +20,4 @@ env_vars:
     value: "120"
   - key: QUEUE_DRIVER
     value: sync
-  - key: MAIL_DRIVER
-    value: mailgun
-  - key: MAIL_HOST
-    value: smtp.mailgun.org
-  - key: MAIL_PORT
-    value: "2525"
-  - key: APP_DEBUG
-    value: "true"
-  - key: APP_LOG
-    value: daily
-  - key: BACKPACK_REGISTRATION_OPEN
-    value: "false"
-  - key: APP_URL
-    value: "https://backoffice-staging.uniqkey.eu/"
+
