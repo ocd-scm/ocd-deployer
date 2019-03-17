@@ -30,5 +30,5 @@ secretVolumes:
 volumeMounts: 
   - name: pem-secret-volume
     mountPath: /opt/app-root/src/storage/app/certificates
-  - name: other-secret-volume=
+  - name: other-secret-volume
     mountPath: /opt/app-root/src/storage/app/other

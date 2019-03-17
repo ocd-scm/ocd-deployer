@@ -1,0 +1,15 @@
+{{- if .Values.pvcs }}
+{{- range .Values.pvcs }}
+---
+apiVersion: "v1"
+kind: "PersistentVolumeClaim"
+metadata:
+  name: {{ .name | quote }}
+spec:
+  accessModes:
+    - {{ .accessMode | default "ReadWriteOnce" | quote }}
+  resources:
+    requests:
+      storage: {{ .size | default "1Gi" | quote }}
+{{- end }}        
+{{- end }}

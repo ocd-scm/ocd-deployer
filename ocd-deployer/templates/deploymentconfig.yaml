@@ -64,18 +64,22 @@ spec:
         image: " "
         ports:
         - containerPort: 8080
+        {{- if .Values.readinessProbeGet }}
         readinessProbe:
-          timeoutSeconds: {{ .Values.readiness_timeout }}
-          initialDelaySeconds: {{ .Values.readiness_delay }}
+          timeoutSeconds: {{ .Values.readiness_timeout | default 5 }}
+          initialDelaySeconds: {{ .Values.readiness_delay | default 5 }}
           httpGet:
             path: {{ .Values.readinessProbeGet | quote }}
             port: 8080
+        {{- end }}
+        {{- if .Values.livenessProbeGet }}
         livenessProbe:
-          timeoutSeconds: {{ .Values.liveness_timeout }}
-          initialDelaySeconds: {{ .Values.liveness_delay }}
+          timeoutSeconds: {{ .Values.liveness_timeout | default 3 }}
+          initialDelaySeconds: {{ .Values.liveness_delay | default 3 }}
           httpGet:
             path: {{ .Values.livenessProbeGet | quote }}
             port: 8080
+        {{- end }}
         resources:
           limits:
             memory: {{ .Values.memory_limit | quote }}
@@ -86,12 +90,19 @@ spec:
             mountPath: {{ .mountPath}}
         {{- end}}
         {{- end }}
-      {{- if .Values.secretVolumes }}
       volumes:
+      {{- if .Values.secretVolumes }}
       {{- range .Values.secretVolumes }}
         - name: {{ .name }}
           secret: 
             defaultMode: {{ .defaultMode}}
             secretName: {{ .secretName}}
       {{- end}}
-      {{ end }}
+      {{- end }}
+      {{- if .Values.pvcs }}
+      {{- range .Values.pvcs }}
+        - name: {{ .name | quote }}
+          persistentVolumeClaim:
+            claimName: {{ .name | quote }}
+      {{- end }}
+      {{- end }}

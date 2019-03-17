@@ -1,0 +1,13 @@
+name: realworld
+env_vars: 
+  - key: APP_NAME
+    value: BackOffice
+imageStreamTag: "realworld:v0.0.9"
+pvcs:
+  - name: testpvc2
+  - name: testpvc
+volumeMounts: 
+  - name: testpvc2
+    mountPath: /opt/app-root/src/.data/db
+  - name: testpvc
+    mountPath: /opt/app-root/testpvc
