@@ -10,7 +10,7 @@ metadata:
     template.alpha.openshift.io/wait-for-ready: 'true'
 spec:
   strategy:
-    type: Rolling
+    type: {{ .Values.strategy | default "Rolling" }}
   triggers:
   - type: ImageChange
     imageChangeParams:
