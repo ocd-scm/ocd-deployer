@@ -3,8 +3,6 @@
 #imageStreamTag: build-env/realworld-react-redux:v0.0.9 
 # Memory Limit: Maximum amount of memory the container can use.
 memory_limit: 512Mi
-# Application Hostname: The exposed hostname that will route to the Node.js service, if left blank a value will be defaulted.
-application_domain:
 # How long before checking readiness
 readiness_delay: 3
 # How long to timeout oh checking readiness
