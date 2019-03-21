@@ -3,6 +3,9 @@ apiVersion: route.openshift.io/v1
 metadata:
   name: {{ .Values.name | quote }}
 spec:
+  {{- if .Values.host }}  
+  host: {{ .Values.host | quote }}
+  {{- end }}
   {{- if .Values.targetPort }}  
   port:
     targetPort: {{ .Values.targetPort | quote }}
