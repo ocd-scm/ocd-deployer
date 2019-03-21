@@ -17,11 +17,11 @@ spec:
   tls:
     insecureEdgeTerminationPolicy: {{ .Values.insecureEdgeTerminationPolicy | default "Redirect" | quote }}
     caCertificate: |
-      {{ .Values.caCertificate }}
+{{ .Values.caCertificate | indent 6 }}
     certificate: |
-      {{ .Values.certificate }}
+{{ .Values.certificate | indent 6 }}
     key: |
-      {{ .Values.key }}
+{{ .Values.key | indent 6 }}
   {{- end }}
   to:
     kind: Service
