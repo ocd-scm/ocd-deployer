@@ -14,13 +14,14 @@ spec:
   termination: {{ .Values.termination | quote }}
   {{- end }}
   {{- if .Values.tls }}
-  insecureEdgeTerminationPolicy: {{ .Values.insecureEdgeTerminationPolicy | default "Redirect" | quote }}
-  caCertificate: |
-    {{ .Values.caCertificate }}
-  certificate: |
-    {{ .Values.certificate }}
-  key: |
-    {{ .Values.key }}
+  tls:
+    insecureEdgeTerminationPolicy: {{ .Values.insecureEdgeTerminationPolicy | default "Redirect" | quote }}
+    caCertificate: |
+      {{ .Values.caCertificate }}
+    certificate: |
+      {{ .Values.certificate }}
+    key: |
+      {{ .Values.key }}
   {{- end }}
   to:
     kind: Service
