@@ -15,9 +15,12 @@ spec:
   {{- end }}
   {{- if .Values.tls }}
   insecureEdgeTerminationPolicy: {{ .Values.insecureEdgeTerminationPolicy | default "Redirect" | quote }}
-  caCertificate: {{ .Values.caCertificate }}
-  certificate: {{ .Values.certificate }}
-  key: {{ .Values.key }}
+  caCertificate: |
+    {{ .Values.caCertificate }}
+  certificate: |
+    {{ .Values.certificate }}
+  key: |
+    {{ .Values.key }}
   {{- end }}
   to:
     kind: Service
