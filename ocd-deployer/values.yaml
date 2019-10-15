@@ -1,13 +1,4 @@
 # Name: The name assigned to all of the frontend objects defined in this template.
-#name:
-#imageStreamTag: build-env/realworld-react-redux:v0.0.9 
 # Memory Limit: Maximum amount of memory the container can use.
 memory_limit: 512Mi
-# How long before checking readiness
-readiness_delay: 3
-# How long to timeout oh checking readiness
-readiness_timeout: 3
-# How long before checking liveness
-liveness_delay: 3
-# How long to timeout oh checking liveness
-liveness_timeout: 3
+
