@@ -68,6 +68,9 @@ spec:
         readinessProbe:
           timeoutSeconds: {{ .Values.readiness_timeout | default 5 }}
           initialDelaySeconds: {{ .Values.readiness_delay | default 5 }}
+          successThreshold: {{ .Values.readiness_succes_threshold | default 1 }}
+          periodSeconds: {{ .Values.readiness_period | default 30 }}
+          failureThreshold: {{ .Values.readiness_failure_threshold | default 1 }}
           httpGet:
             path: {{ .Values.readinessProbeGet | quote }}
             port: 8080
@@ -76,6 +79,9 @@ spec:
         livenessProbe:
           timeoutSeconds: {{ .Values.liveness_timeout | default 3 }}
           initialDelaySeconds: {{ .Values.liveness_delay | default 3 }}
+          successThreshold: {{ .Values.liveness_succes_threshold | default 1 }}
+          periodSeconds: {{ .Values.liveness_period | default 30 }}
+          failureThreshold: {{ .Values.liveness_failure_threshold | default 1 }}
           httpGet:
             path: {{ .Values.livenessProbeGet | quote }}
             port: 8080
