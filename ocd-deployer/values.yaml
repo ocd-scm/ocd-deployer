@@ -1,4 +1,5 @@
 # Name: The name assigned to all of the frontend objects defined in this template.
 # Memory Limit: Maximum amount of memory the container can use.
 memory_limit: 512Mi
-
+# There is an enternal route by default but this can be disabled for private microservices
+enable_route: true

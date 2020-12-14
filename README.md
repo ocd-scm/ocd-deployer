@@ -12,7 +12,8 @@ It will generate the deployment as well as a service and a route to expose the a
 
 Helmfile is the perfect engine to cookie cutter stamp out multiple microservices from simple yaml in your git repo. Use the OCD enviroment webhook project to refresh your microservices whenever you update helmfile.yaml in your git repo. 
 
-This chart does not supply persistent volumes for storage as stateful apps are an antipattern in 12factor.net. You should configure a cloud-native managed persistent storage such as S3 buckets (or Azure Blog, or Google Cloud Storage) and use a cloud native database service (AWS RDS, Azure Postres, Google Cloud SQL, compose.com, ...).  Disclosure: We do run Redis instances in openshift with PVCs but only for temporary data so there is no backup and restores. 
+This chart now does support an optional persistent volume claim (PVC) for storage. Note those are an antipattern in 12factor.net but 
+are occationally helpful. You should perfer to configure a cloud-native managed persistent storage such as S3 buckets (or Azure Blog, or Google Cloud Storage) and use a cloud native database service (AWS RDS, Azure Postres, Google Cloud SQL, compose.com, ...).  Disclosure: We do run Redis instances in openshift with PVCs but only for temporary data so there is no backup and restores. 
 
 ## See Also
 
